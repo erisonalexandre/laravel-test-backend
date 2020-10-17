@@ -47,8 +47,24 @@ export default {
     },
     methods: {
         deleteProperty(id) {
-            alert('deletar ? ' + id)
+             this.$toast.question("Deseja remover essa propriedade ?", 'Alerta', {
+                position: 'center',
+                buttons: [
+                    ['<button>Sim</button>', (instance, toast) => {
+                        instance.hide({transitionOut: 'fadeOut'}, toast, 'button');
+                        this.$inertia.delete(`/property/${id}`, {
+                            onSuccess: () => this.$toast.success('Propriedade removida com sucesso!', 'Sucesso!', {position: "topRight"})
+                        })
+                    }, true],
+                    ['<button>Não</button>', (instance, toast) => {
+                        instance.hide({transitionOut: 'fadeOut'}, toast, 'button');
+                    }],
+                ]
+            });
         }
+    },
+    created() {
+        this.$root.pageOptions.header = 'Propriedades'
     }
 
 }

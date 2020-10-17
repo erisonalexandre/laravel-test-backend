@@ -12,4 +12,9 @@ class Property extends Model
     use SoftDeletes;
 
     protected $guarded = [];
+
+    public function contract()
+    {
+        return $this->hasOne(Contract::class);
+    }
 }

@@ -18,5 +18,8 @@
             AppLayout,
             Welcome,
         },
+        created() {
+            this.$root.pageOptions.header = 'Dashboard'
+        }
     }
 </script>

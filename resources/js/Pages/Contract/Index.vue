@@ -45,6 +45,9 @@ export default {
         deleteProperty(id) {
             alert('deletar ? ' + id)
         }
+    },
+    created() {
+        this.$root.pageOptions.header = 'Contratos'
     }
 
 }

@@ -10,7 +10,6 @@ class ContractController extends Controller
 {
     public function index()
     {
-        Inertia::share('header', 'Contratos');
         return Inertia::render('Contract/Index', ['contracts' => Contract::with('property')->get()]);
     }
 }
