@@ -21,7 +21,7 @@ class CreateContractsTable extends Migration
             $table->string('document');
             $table->string('name');
             $table->string('email');
-            $table->foreignId('property_id')->constrained('properties');
+            $table->foreignId('property_id')->unique()->constrained('properties');
 
             $table->softDeletes();
             $table->timestamps();
