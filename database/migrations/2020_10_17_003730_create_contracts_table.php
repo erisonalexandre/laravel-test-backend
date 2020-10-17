@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Property;
+use App\Models\Contract;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,7 +17,7 @@ class CreateContractsTable extends Migration
         Schema::create('contracts', function (Blueprint $table) {
             $table->id();
 
-            $table->enum('type', Property::TYPES);
+            $table->enum('type', Contract::TYPES);
             $table->string('document');
             $table->string('name');
             $table->string('email');

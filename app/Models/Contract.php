@@ -10,4 +10,13 @@ class Contract extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    const TYPE_PERSON = 'person';
+    const TYPE_CORPORATE = 'corporate';
+    const TYPES = [
+        self::TYPE_PERSON,
+        self::TYPE_CORPORATE
+    ];
+
+    protected $guarded = [];
 }
