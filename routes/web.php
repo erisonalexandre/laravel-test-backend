@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PropertyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
+    Route::get('/properties', [PropertyController::class, 'index'])->name('properties');
+});
 
 Route::get('/', function () {
     return view('welcome');
