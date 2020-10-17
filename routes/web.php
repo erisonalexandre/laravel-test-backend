@@ -18,5 +18,6 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    Inertia\Inertia::share('header', 'Dashboard');
     return Inertia\Inertia::render('Dashboard');
 })->name('dashboard');
