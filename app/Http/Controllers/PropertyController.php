@@ -10,7 +10,7 @@ class PropertyController extends Controller
 {
     public function index()
     {
-        Inertia::share('header', 'Properties');
+        Inertia::share('header', 'Propriedades');
         return Inertia::render('Property/Index', ['properties' => Property::all()]);
     }
 }

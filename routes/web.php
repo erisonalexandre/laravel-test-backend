@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContractController;
 use App\Http\Controllers\PropertyController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/properties', [PropertyController::class, 'index'])->name('properties');
+    Route::get('/contracts', [ContractController::class, 'index'])->name('contracts');
 });
 
 Route::get('/', function () {
