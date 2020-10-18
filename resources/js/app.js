@@ -7,12 +7,14 @@ import { InertiaForm } from 'laravel-jetstream';
 import PortalVue from 'portal-vue';
 import VueIziToast from 'vue-izitoast';
 import PageOptions from './Mixins/PageOptions';
+import VueMask from 'v-mask'
 
 Vue.mixin({ methods: { route } });
 Vue.use(InertiaApp);
 Vue.use(InertiaForm);
 Vue.use(PortalVue);
 Vue.use(VueIziToast);
+Vue.use(VueMask);
 
 const app = document.getElementById('app');
 

@@ -26,6 +26,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "v-mask": "^2.2.3",
         "vue-izitoast": "^1.2.1"
     }
 }

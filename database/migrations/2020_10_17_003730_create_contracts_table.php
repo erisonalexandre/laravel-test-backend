@@ -17,13 +17,12 @@ class CreateContractsTable extends Migration
         Schema::create('contracts', function (Blueprint $table) {
             $table->id();
 
-            $table->enum('type', Contract::TYPES);
+            $table->enum('type', array_flip(Contract::TYPES));
             $table->string('document');
             $table->string('name');
             $table->string('email');
             $table->foreignId('property_id')->unique()->constrained('properties');
 
-            $table->softDeletes();
             $table->timestamps();
         });
     }

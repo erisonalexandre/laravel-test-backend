@@ -9,13 +9,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Contract extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
     const TYPE_PERSON = 'person';
     const TYPE_CORPORATE = 'corporate';
     const TYPES = [
-        self::TYPE_PERSON,
-        self::TYPE_CORPORATE
+        self::TYPE_PERSON => 'Pessoa Fisica',
+        self::TYPE_CORPORATE => 'Pessoa Jurídica'
     ];
 
     protected $guarded = [];

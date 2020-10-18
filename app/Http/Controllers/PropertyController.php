@@ -13,7 +13,7 @@ class PropertyController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Property/Index', ['properties' => Property::all()]);
+        return Inertia::render('Property/Index', ['properties' => Property::with('contract')->get()]);
     }
 
     public function destroy($id)
@@ -37,6 +37,6 @@ class PropertyController extends Controller
             'message' => 'Propriedade cadastrada com sucesso!',
             'type' => 'success'
         ]);
-        return Redirect::route('properties');
+        return Redirect::route('property');
     }
 }

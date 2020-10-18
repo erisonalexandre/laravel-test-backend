@@ -26,7 +26,7 @@ class ContractFactory extends Factory
             'document' => $this->faker->cpf,
             'name' => $this->faker->name,
             'property_id' => $this->faker->unique()->numberBetween(1, 10),
-            'type' => $this->faker->randomElement(Contract::TYPES)
+            'type' => $this->faker->randomElement(array_flip(Contract::TYPES))
         ];
     }
 }

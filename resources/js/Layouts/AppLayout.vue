@@ -17,10 +17,10 @@
                             <jet-nav-link :href="route('dashboard')" :active="$page.currentRouteName == 'dashboard'">
                                 Dashboard
                             </jet-nav-link>
-                            <jet-nav-link :href="route('properties')" :active="$page.currentRouteName == 'properties'">
+                            <jet-nav-link :href="route('property')" :active="$page.currentRouteName == 'property'">
                                 Propriedades
                             </jet-nav-link>
-                            <jet-nav-link :href="route('contracts')" :active="$page.currentRouteName == 'contracts'">
+                            <jet-nav-link :href="route('contract')" :active="$page.currentRouteName == 'contract'">
                                 Contratos
                             </jet-nav-link>
                         </div>
@@ -91,10 +91,10 @@
                     <jet-responsive-nav-link :href="route('dashboard')" :active="$page.currentRouteName == 'dashboard'">
                         Dashboard
                     </jet-responsive-nav-link>
-                    <jet-responsive-nav-link :href="route('properties')" :active="$page.currentRouteName == 'properties'">
+                    <jet-responsive-nav-link :href="route('property')" :active="$page.currentRouteName == 'property'">
                         Propriedades
                     </jet-responsive-nav-link>
-                    <jet-responsive-nav-link :href="route('contracts')" :active="$page.currentRouteName == 'contracts'">
+                    <jet-responsive-nav-link :href="route('contract')" :active="$page.currentRouteName == 'contract'">
                         Contratos
                     </jet-responsive-nav-link>
                 </div>

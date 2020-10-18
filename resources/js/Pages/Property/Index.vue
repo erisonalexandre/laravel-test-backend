@@ -11,7 +11,7 @@
                         </template>
                         <template #address="{ data }">
                             <span class="text-gray-700 px-6 py-3 flex items-center">
-                                {{ `${data.street}, ${data.number}, ${data.city}, ${data.state}` }}
+                                {{ transformAddressToString(data, ['street', 'number', 'city', 'state']) }}
                             </span>
                         </template>
                         <template #status="{ data }">
@@ -34,7 +34,7 @@
 import Datatable from '@/Components/Datatable'
 import AppLayout from '@/Layouts/AppLayout'
 import JetButton from '@/Jetstream/Button'
-
+import { transformAddressToString } from '@/Helpers/AddressHelper'
 
 export default {
     layout: AppLayout,
@@ -69,6 +69,10 @@ export default {
                     }],
                 ]
             });
+        },
+
+        transformAddressToString(property, fields) {
+            return transformAddressToString(property, fields)
         }
     },
     created() {
