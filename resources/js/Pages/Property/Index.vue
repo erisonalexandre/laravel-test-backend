@@ -1,9 +1,14 @@
 <template>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <div class="bg-white border-b border-gray-200">
+            <div class="overflow-hidden sm:rounded-lg">
+                <div class="border-b border-gray-200">
                     <Datatable :headings="headings" :list="properties">
+                        <template #actions>
+                            <jet-button @click="$inertia.visit(route('property.create'))">
+                                Novo
+                            </jet-button>
+                        </template>
                         <template #address="{ data }">
                             <span class="text-gray-700 px-6 py-3 flex items-center">
                                 {{ `${data.street}, ${data.number}, ${data.city}, ${data.state}` }}
@@ -26,13 +31,16 @@
     </div>
 </template>
 <script>
-import Datatable from '../../Components/Datatable'
-import AppLayout from '../../Layouts/AppLayout'
+import Datatable from '@/Components/Datatable'
+import AppLayout from '@/Layouts/AppLayout'
+import JetButton from '@/Jetstream/Button'
+
 
 export default {
     layout: AppLayout,
     components: {
-        Datatable
+        Datatable,
+        JetButton
     },
     props: ['properties'],
     data() {
