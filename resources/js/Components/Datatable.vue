@@ -71,19 +71,17 @@ export default {
     computed: {
         filteredList() {
             if (this.search.length) {
-                console.log('aqui')
                 return this.list.filter((item) => {
                     for(let value of Object.values(item)) {
-                        console.log(value)
                         if (!(typeof value == 'string')) {
                             continue
                         }
                         if (
                             value.normalize("NFD")
-                                .replace(/[^a-zA-Zs]/g, "")
+                                .replace(/([\u0300-\u036f]|[^0-9a-zA-Z])/g, "")
                                 .toLowerCase()
                                 .includes(
-                                    this.search.normalize("NFD").replace(/[^a-zA-Zs]/g, "").toLowerCase()
+                                    this.search.normalize("NFD").replace(/([\u0300-\u036f]|[^0-9a-zA-Z])/g, "").toLowerCase()
                                 )
                             ) {
                             return true
