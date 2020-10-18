@@ -18,6 +18,13 @@ const app = document.getElementById('app');
 
 new Vue({
     mixins: [PageOptions],
+    watch: {
+        flash() {
+            if(this.$page.flash) {
+                this.$toast[this.$page.flash.type](this.$page.flash.message, this.$page.flash.tittle, {position: 'topRight'})
+            }
+        }
+    },
     render: (h) =>
         h(InertiaApp, {
             props: {

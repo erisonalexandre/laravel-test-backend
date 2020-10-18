@@ -12,4 +12,9 @@ class ContractController extends Controller
     {
         return Inertia::render('Contract/Index', ['contracts' => Contract::with('property')->get()]);
     }
+
+    public function create()
+    {
+        return Inertia::render('Contract/Index', ['contracts' => Contract::with('property')->get()]);
+    }
 }

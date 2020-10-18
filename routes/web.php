@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/properties', [PropertyController::class, 'index'])->name('properties');
     Route::delete('/property/{id}', [PropertyController::class, 'destroy'])->name('property.delete');
+    Route::get('/property/create', [PropertyController::class, 'create'])->name('property.create');
+    Route::post('/property', [PropertyController::class, 'store'])->name('property.store');
     Route::get('/contracts', [ContractController::class, 'index'])->name('contracts');
 });
 

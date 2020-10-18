@@ -149,6 +149,8 @@
         <!-- Modal Portal -->
         <portal-target name="modal" multiple>
         </portal-target>
+
+        <div style="display:none" >{{flash}}</div>
     </div>
 </template>
 
@@ -175,7 +177,6 @@
                 showingNavigationDropdown: false
             }
         },
-
         methods: {
             switchToTeam(team) {
                 this.$inertia.put(route('current-team.update'), {
@@ -195,6 +196,12 @@
         computed: {
             path() {
                 return window.location.pathname
+            },
+            flash() {
+                if(this.$page.flash) {
+                    this.$toast[this.$page.flash.type](this.$page.flash.message, this.$page.flash.tittle, {position: 'topRight'})
+                }
+                return null
             }
         }
     }

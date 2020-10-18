@@ -12,6 +12,10 @@
 
                 <jet-section-border />
 
+                <UpdatePasswordForm></UpdatePasswordForm>
+
+                <jet-section-border />
+
                 <logout-other-browser-sessions-form :sessions="sessions" class="mt-10 sm:mt-0" />
 
                 <jet-section-border />
