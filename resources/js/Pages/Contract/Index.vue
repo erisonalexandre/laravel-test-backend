@@ -58,6 +58,8 @@ export default {
         deleteContract(id) {
              this.$toast.question("Deseja remover esse contrato ?", 'Alerta', {
                 position: 'center',
+                overlay: true,
+                close: false,
                 buttons: [
                     ['<button>Sim</button>', (instance, toast) => {
                         instance.hide({transitionOut: 'fadeOut'}, toast, 'button');

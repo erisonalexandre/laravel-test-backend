@@ -3,7 +3,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="overflow-hidden sm:rounded-lg">
                 <div class="border-b border-gray-200">
-                    <Datatable :headings="headings" :list="properties">
+                    <Datatable :headings="headings" :list="listProperties">
                         <template #actions>
                             <jet-button @click="$inertia.visit(route('property.create'))">
                                 Novo
@@ -45,6 +45,7 @@ export default {
     props: ['properties'],
     data() {
         return {
+            listProperties: this.properties,
             headings: [
                 { key: 'email', value: 'Email'},
                 { key: 'address', value: 'Endereço'},
@@ -55,14 +56,23 @@ export default {
     },
     methods: {
         deleteProperty(id) {
-             this.$toast.question("Deseja remover essa propriedade ?", 'Alerta', {
+            this.$toast.question("Deseja remover essa propriedade ?", 'Alerta', {
                 position: 'center',
+                overlay: true,
+                close: false,
                 buttons: [
                     ['<button>Sim</button>', (instance, toast) => {
+
                         instance.hide({transitionOut: 'fadeOut'}, toast, 'button');
-                        this.$inertia.delete(`/property/${id}`, {
-                            onSuccess: () => this.$toast.success('Propriedade removida com sucesso!', 'Sucesso!', {position: "topRight"})
-                        })
+                        window.axios
+                            .delete(`/property/${id}`)
+                            .then(
+                                ({data}) => {
+                                    this.updateList()
+                                    this.$toast.success('Propriedade removida com sucesso!', 'Sucesso!', {position: "topRight"})
+                                }
+                            )
+
                     }, true],
                     ['<button>Não</button>', (instance, toast) => {
                         instance.hide({transitionOut: 'fadeOut'}, toast, 'button');
@@ -73,6 +83,12 @@ export default {
 
         transformAddressToString(property, fields) {
             return transformAddressToString(property, fields)
+        },
+
+        updateList() {
+            window.axios
+                .get(this.route('property.list'))
+                .then(({data}) => this.listProperties = data)
         }
     },
     created() {

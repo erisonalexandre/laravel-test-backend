@@ -20,6 +20,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::delete('/property/{id}', [PropertyController::class, 'destroy'])->name('property.delete');
     Route::get('/property/create', [PropertyController::class, 'create'])->name('property.create');
     Route::post('/property', [PropertyController::class, 'store'])->name('property.store');
+    Route::get('/properties', [PropertyController::class, 'list'])->name('property.list');
 
     Route::get('/contract', [ContractController::class, 'index'])->name('contract');
     Route::delete('/contract/{id}', [ContractController::class, 'destroy'])->name('contract.delete');

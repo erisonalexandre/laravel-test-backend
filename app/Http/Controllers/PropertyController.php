@@ -18,13 +18,17 @@ class PropertyController extends Controller
 
     public function destroy($id)
     {
-        DestroyPropertyService::destroy($id);
-        return back(303)->with('status', 'property-deleted');
+        return response()->json(DestroyPropertyService::destroy($id));
     }
 
     public function create()
     {
         return Inertia::render('Property/Create');
+    }
+
+    public function list()
+    {
+        return response()->json(Property::with('contract')->get());
     }
 
     public function store(StorePropertyRequest $storePropertyRequest)
