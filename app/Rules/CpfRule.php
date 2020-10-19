@@ -20,10 +20,10 @@ class CpfRule implements Rule
      * Determine if the validation rule passes.
      *
      * @param  string  $attribute
-     * @param  mixed  $value
+     * @param  mixed  $cpf
      * @return bool
      */
-    public function passes($attribute, $value)
+    public function passes($attribute, $cpf)
     {
         if (empty($cpf)) {
             return false;

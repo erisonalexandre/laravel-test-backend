@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePropertyRequest;
 use App\Models\Property;
 use App\Services\Property\DestroyPropertyService;
+use App\Services\Property\StorePropertyService;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
@@ -33,14 +35,25 @@ class PropertyController extends Controller
 
     public function store(StorePropertyRequest $storePropertyRequest)
     {
-        Property::create(
-            $storePropertyRequest->all()
-        );
-        Session::flash('flash', [
-            'title' => 'Sucesso!',
-            'message' => 'Propriedade cadastrada com sucesso!',
-            'type' => 'success'
-        ]);
-        return Redirect::route('property');
+        try {
+            DB::beginTransaction();
+            StorePropertyService::store($storePropertyRequest->all());
+            Session::flash('flash', [
+                'title' => 'Sucesso!',
+                'message' => 'Propriedade cadastrada com sucesso!',
+                'type' => 'success'
+            ]);
+            DB::commit();
+
+            return Redirect::route('property');
+        } catch (\Throwable $th) {
+            DB::rollback();
+            Session::flash('flash', [
+                'title' => 'Error!',
+                'message' => 'Ocorreu um erro interno, entre em contato com o suporte!',
+                'type' => 'error'
+            ]);
+            return back(303);
+        }
     }
 }

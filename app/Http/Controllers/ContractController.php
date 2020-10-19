@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreContractRequest;
 use App\Models\Contract;
 use App\Services\Contract\DestroyContractService;
+use App\Services\Contract\StoreContractService;
 use App\Services\Property\PropertiesWithoutContractService;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
@@ -29,16 +32,27 @@ class ContractController extends Controller
         return back(303);
     }
 
-    public function store(StoreContractRequest $request)
+    public function store(StoreContractRequest $storeContractRequest)
     {
-        Contract::create(
-            $request->all()
-        );
-        Session::flash('flash', [
-            'title' => 'Sucesso!',
-            'message' => 'Contrato cadastrado com sucesso!',
-            'type' => 'success'
-        ]);
-        return Redirect::route('contract');
+        try {
+            DB::beginTransaction();
+            StoreContractService::store($storeContractRequest->all());
+            Session::flash('flash', [
+                'title' => 'Sucesso!',
+                'message' => 'Contrato cadastrado com sucesso!',
+                'type' => 'success'
+            ]);
+            DB::commit();
+
+            return Redirect::route('contract');
+        } catch (\Throwable $th) {
+            DB::rollback();
+            Session::flash('flash', [
+                'title' => 'Error!',
+                'message' => 'Ocorreu um erro interno, entre em contato com o suporte!',
+                'type' => 'error'
+            ]);
+            return back(303);
+        }
     }
 }

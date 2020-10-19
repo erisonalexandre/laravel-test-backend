@@ -1,7 +1,10 @@
 <x-guest-layout>
+    <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+        <a href="{{ route('home') }}" class="text-sm text-gray-700 underline">Inicio</a>
+    </div>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <x-logo />
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
@@ -28,7 +31,7 @@
             <div class="block mt-4">
                 <label for="remember_me" class="flex items-center">
                     <input id="remember_me" type="checkbox" class="form-checkbox" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                    <span class="ml-2 text-sm text-gray-600">{{ __('Lembre de mim') }}</span>
                 </label>
             </div>
 

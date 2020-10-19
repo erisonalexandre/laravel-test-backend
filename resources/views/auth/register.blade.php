@@ -1,7 +1,11 @@
 <x-guest-layout>
+    <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
+        <a href="{{ route('home') }}" class="text-sm text-gray-700 underline">Inicio</a>
+    </div>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <x-logo />
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
@@ -31,7 +35,7 @@
 
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
+                    {{ __('Já Está Registrado?') }}
                 </a>
 
                 <x-jet-button class="ml-4">
