@@ -10,6 +10,7 @@ use App\Services\Property\PropertiesWithoutContractService;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
@@ -47,6 +48,11 @@ class ContractController extends Controller
             return Redirect::route('contract');
         } catch (\Throwable $th) {
             DB::rollback();
+            Log::error([
+                'msg' => $th->getMessage(),
+                'line' => $th->getLine(),
+                'file' => $th->getFile(),
+            ]);
             Session::flash('flash', [
                 'title' => 'Error!',
                 'message' => 'Ocorreu um erro interno, entre em contato com o suporte!',
