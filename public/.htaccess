@@ -5,6 +5,7 @@
 
     RewriteEngine On
 
+    RewriteCond %{HTTP_HOST} ^projeto-accordous\.herokuapp\.com
     RewriteCond %{HTTPS} off
     RewriteRule ^(.*)$ https://projeto-accordous.herokuapp.com/$1 [R,L]
 
