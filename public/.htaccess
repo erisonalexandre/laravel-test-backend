@@ -5,8 +5,7 @@
 
     RewriteEngine On
 
-
-    RewriteCond %{SERVER_PORT} 80
+    RewriteCond %{HTTPS} off
     RewriteRule ^(.*)$ https://projeto-accordous.herokuapp.com/$1 [R,L]
 
     # Handle Authorization Header
