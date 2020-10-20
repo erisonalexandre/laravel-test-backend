@@ -18,3 +18,5 @@ public/images/
 public/js/
 
 resources/assets/js/ziggy.js
+
+.env.testing

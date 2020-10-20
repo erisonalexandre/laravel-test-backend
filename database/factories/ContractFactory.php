@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Contract;
+use App\Models\Property;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ContractFactory extends Factory
@@ -25,7 +26,7 @@ class ContractFactory extends Factory
             'email' => $this->faker->unique()->safeEmail,
             'document' => $this->faker->cpf,
             'name' => $this->faker->name,
-            'property_id' => $this->faker->unique()->numberBetween(1, 10),
+            'property_id' => Property::factory(),
             'type' => $this->faker->randomElement(array_flip(Contract::TYPES))
         ];
     }
